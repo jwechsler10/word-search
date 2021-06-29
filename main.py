@@ -138,8 +138,8 @@ def displayBoard(board):
 
 def main():
     parser = argparse.ArgumentParser(description='Generates a gameboard of desired length and width and prints any words found within it.')
-    parser.add_argument("-l", "--length", required=True, help='length of gameboard')
-    parser.add_argument("-w", "--width", required=True, help='width of gameboard')
+    parser.add_argument("-l", "--length", type=int, required=True, help='length of gameboard')
+    parser.add_argument("-w", "--width", type=int, required=True, help='width of gameboard')
     parser.add_argument("-sb", "--show-board", action='store_true', required=False, default=False, help='print the gameboard')
     parser.add_argument("-f", "--file", required=False, default='words.txt', help='path to file of valid words to search for')
     args = parser.parse_args()
@@ -147,6 +147,12 @@ def main():
     results = []
     length = int(args.length)
     width = int(args.width)
+
+    if length != width:
+        sys.exit('Length and width must be equal. Please enter equal length and width')
+
+    if length < 0 or width < 0:
+        sys.exit('Please enter positive values for length and width')
 
     validWords = getValidWords(args.file)
     gameBoard = generateBoard(length,width)
