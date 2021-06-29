@@ -156,6 +156,7 @@ def main():
 
     validWords = getValidWords(args.file)
     gameBoard = generateBoard(length,width)
+    print(gameBoard)
 
     if args.show_board:
         displayBoard(gameBoard)
