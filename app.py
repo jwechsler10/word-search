@@ -1,116 +1,120 @@
+"""This module will create a grid to represent crossword puzzle of a user
+defined size. It will then output any words that match a list of predefined
+words that can be specifed from a file.
+"""
 import string
 import random
 import collections
 import sys
 import argparse
 
-def getValidWords(filePath='words.txt'):
+def get_valid_words(file_path='words.txt'):
     """Returns a list of valid words read in from a file.
 
     Keyword arguments:
-    filePath -- the path to the file of valid words (default words.txt)
+    file_path -- the path to the file of valid words (default words.txt)
     """
     try:
-        with open(filePath) as wordsFile:
-            words = wordsFile.read().splitlines()
+        with open(file_path) as words_file:
+            words = words_file.read().splitlines()
         return words
-    except FileNotFoundError as e:
+    except FileNotFoundError:
         sys.exit('File not found, please check the file path and try again.')
 
-def generateBoard(length, width):
-    """Generate a gameboard based on a user provided length and width.
+def generate_board(length, width):
+    """Generate a game_board based on a user provided length and width.
 
     Keyword arguments:
     length -- the length of the board
     width -- the width of the board
 
-    Returns a 2D array with random lowercase letters to represent the gameboard.
+    Returns a 2D array with random lowercase letters to represent the game_board.
     """
     return [[random.choice(string.ascii_lowercase) for i in range(length)] for j in range(width)]
 
-def findWordsDown(board, length, width, validWords):
-    """Finds all matching words going down the gameboard.
+def find_words_down(board, length, width, valid_words):
+    """Finds all matching words going down the game_board.
 
     Keyword arguments:
-    board -- the gameboard to look for words in
-    length -- the length of the gameboard
-    width -- the width of the gameboard
-    validWords -- a list of valid words to compare against
+    board -- the game_board to look for words in
+    length -- the length of the game_board
+    width -- the width of the game_board
+    valid_words -- a list of valid words to compare against
     """
-    acceptedWords = []
+    accepted_words = []
     for j in range(length):
         word = ''
         for i in range(width):
             word += board[i][j]
-            if word in validWords:
-                acceptedWords.append(word)
-    return acceptedWords
+            if word in valid_words:
+                accepted_words.append(word)
+    return accepted_words
 
 
-def findWordsUp(board, length, width, validWords):
-    """Finds all matching words going up the gameboard.
+def find_words_up(board, length, width, valid_words):
+    """Finds all matching words going up the game_board.
 
     Keyword arguments:
-    board -- the gameboard to look for words in
-    length -- the length of the gameboard
-    width -- the width of the gameboard
-    validWords -- a list of valid words to compare against
+    board -- the game_board to look for words in
+    length -- the length of the game_board
+    width -- the width of the game_board
+    valid_words -- a list of valid words to compare against
     """
-    acceptedWords = []
+    accepted_words = []
     for j in range(length - 1, -1, -1):
         word = ''
         for i in range(width - 1, -1, -1):
             word += board[i][j]
-            if word in validWords:
-                acceptedWords.append(word)
-    return acceptedWords
+            if word in valid_words:
+                accepted_words.append(word)
+    return accepted_words
 
-def findWordsAcross(board, length, width, validWords):
-    """Finds all matching words going right across the gameboard.
+def find_words_across(board, length, width, valid_words):
+    """Finds all matching words going right across the game_board.
 
     Keyword arguments:
-    board -- the gameboard to look for words in
-    length -- the length of the gameboard
-    width -- the width of the gameboard
-    validWords -- a list of valid words to compare against
+    board -- the game_board to look for words in
+    length -- the length of the game_board
+    width -- the width of the game_board
+    valid_words -- a list of valid words to compare against
     """
-    acceptedWords = []
+    accepted_words = []
     for i in range(width):
         word = ''
         for j in range(length):
             word += board[i][j]
-            if word in validWords:
-                acceptedWords.append(word)
-    return acceptedWords
+            if word in valid_words:
+                accepted_words.append(word)
+    return accepted_words
 
-def findWordsBackwards(board, length, width, validWords):
-    """Finds all matching words going left across the gameboard.
+def find_words_backwards(board, length, width, valid_words):
+    """Finds all matching words going left across the game_board.
 
     Keyword arguments:
-    board -- the gameboard to look for words in
-    length -- the length of the gameboard
-    width -- the width of the gameboard
-    validWords -- a list of valid words to compare against
+    board -- the game_board to look for words in
+    length -- the length of the game_board
+    width -- the width of the game_board
+    valid_words -- a list of valid words to compare against
     """
-    acceptedWords = []
+    accepted_words = []
     for i in range(width - 1, -1, -1):
         word = ''
         for j in range(length - 1, -1, -1):
             word += board[i][j]
-            if word in validWords:
-                acceptedWords.append(word)
-    return acceptedWords
+            if word in valid_words:
+                accepted_words.append(word)
+    return accepted_words
 
-def findWordsDiagonal(board, length, width, validWords):
-    """Finds all matching words diagionally on the gameboard.
+def find_words_diagonal(board, length, width, valid_words):
+    """Finds all matching words diagionally on the game_board.
 
     Keyword arguments:
-    board -- the gameboard to look for words in
-    length -- the length of the gameboard
-    width -- the width of the gameboard
-    validWords -- a list of valid words to compare against
+    board -- the game_board to look for words in
+    length -- the length of the game_board
+    width -- the width of the game_board
+    valid_words -- a list of valid words to compare against
     """
-    acceptedWords = []
+    accepted_words = []
     diagonals = collections.defaultdict(list)
     for i in range(length):
         word = ''
@@ -119,15 +123,15 @@ def findWordsDiagonal(board, length, width, validWords):
 
     for i in diagonals:
         word = ''
-        for str in diagonals[i]:
-            word += str
-            if word in validWords:
-                acceptedWords.append(word)
+        for letter in diagonals[i]:
+            word += letter
+            if word in valid_words:
+                accepted_words.append(word)
 
-    return acceptedWords
+    return accepted_words
 
-def displayBoard(board):
-    """Prints the gameboard in an easy to read format.
+def display_board(board):
+    """Prints the game_board in an easy to read format.
 
     Keyword arguments:
     board -- the board to display
@@ -135,12 +139,17 @@ def displayBoard(board):
     for row in board:
         print(row)
 
-
 def main():
-    parser = argparse.ArgumentParser(description='Generates a gameboard of desired length and width and prints any words found within it.')
-    parser.add_argument("-l", "--length", type=int, required=True, help='length of gameboard')
-    parser.add_argument("-w", "--width", type=int, required=True, help='width of gameboard')
-    parser.add_argument("-sb", "--show-board", action='store_true', required=False, default=False, help='print the gameboard')
+    """Main runner for the module. Ensures the proper values are passed in,
+    and then calls functions to generate the gameboard and then find any
+    matching words. Once completed, it will display the results
+    """
+    app_des = 'Generates a gameboard and prints any words found within it.'
+    len_help = 'length of gameboard'
+    parser = argparse.ArgumentParser(description=app_des)
+    parser.add_argument("-l", "--length", type=int, required=True, help=len_help)
+    parser.add_argument("-w", "--width", type=int, required=True, help='width of game_board')
+    parser.add_argument("-sb", "--show-board", action='store_true', required=False, default=False, help='print the game_board')
     parser.add_argument("-f", "--file", required=False, default='words.txt', help='path to file of valid words to search for')
     args = parser.parse_args()
 
@@ -154,24 +163,21 @@ def main():
     if length < 0 or width < 0:
         sys.exit('Please enter positive values for length and width')
 
-    validWords = getValidWords(args.file)
-    gameBoard = generateBoard(length,width)
-    print(gameBoard)
+    valid_words = get_valid_words(args.file)
+    game_board = generate_board(length,width)
 
     if args.show_board:
-        displayBoard(gameBoard)
+        display_board(game_board)
 
-    results += findWordsDown(gameBoard, length, width, validWords)
-    results += findWordsUp(gameBoard, length, width, validWords)
-    results += findWordsAcross(gameBoard, length, width, validWords)
-    results += findWordsBackwards(gameBoard, length, width, validWords)
-    results += findDiagonalWords(gameBoard, length, width, validWords)
+    results += find_words_down(game_board, length, width, valid_words)
+    results += find_words_up(game_board, length, width, valid_words)
+    results += find_words_across(game_board, length, width, valid_words)
+    results += find_words_backwards(game_board, length, width, valid_words)
+    results += find_words_diagonal(game_board, length, width, valid_words)
 
     print('valid words are:')
     for result in set(results):
         print(result)
-
-    return
 
 if __name__ == '__main__':
     main()
