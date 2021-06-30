@@ -144,10 +144,8 @@ def main():
     and then calls functions to generate the gameboard and then find any
     matching words. Once completed, it will display the results
     """
-    app_des = 'Generates a gameboard and prints any words found within it.'
-    len_help = 'length of gameboard'
-    parser = argparse.ArgumentParser(description=app_des)
-    parser.add_argument("-l", "--length", type=int, required=True, help=len_help)
+    parser = argparse.ArgumentParser(description='Generates a gameboard and prints any words found within it.')
+    parser.add_argument("-l", "--length", type=int, required=True, help='length of gameboard')
     parser.add_argument("-w", "--width", type=int, required=True, help='width of game_board')
     parser.add_argument("-sb", "--show-board", action='store_true', required=False, default=False, help='print the game_board')
     parser.add_argument("-f", "--file", required=False, default='words.txt', help='path to file of valid words to search for')
