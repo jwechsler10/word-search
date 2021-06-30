@@ -47,3 +47,15 @@ def testFindWordsAcross():
     expectedWords = ['top', 'rod', 'met']
     actualWords = app.findWordsAcross(testGameBoard, 3, 3, expectedWords)
     assert expectedWords == actualWords
+
+def testFindWordsBackwards():
+    testGameBoard = [['t', 'a', 'c'], ['p', 'a', 'g'], ['o', 'w', 't']]
+    expectedWords = ['two', 'gap', 'cat']
+    actualWords = app.findWordsBackwards(testGameBoard, 3, 3, expectedWords)
+    assert expectedWords == actualWords
+
+def testFindDiagonal():
+    testGameBoard = [['t', 'a', 'q'], ['z', 'o', 'n'], ['v', 'f', 'p']]
+    expectedWords = ['top']
+    actualWords = app.findWordsDiagonal(testGameBoard, 3, 3, expectedWords)
+    assert expectedWords == actualWords

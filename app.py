@@ -101,7 +101,7 @@ def findWordsBackwards(board, length, width, validWords):
                 acceptedWords.append(word)
     return acceptedWords
 
-def findDiagonalWords(board, length, width, validWords):
+def findWordsDiagonal(board, length, width, validWords):
     """Finds all matching words diagionally on the gameboard.
 
     Keyword arguments:
