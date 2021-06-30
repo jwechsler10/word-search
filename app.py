@@ -142,7 +142,7 @@ def display_board(board):
 def main():
     """Main runner for the module. Ensures the proper values are passed in,
     and then calls functions to generate the gameboard and then find any
-    matching words. Once completed, it will display the results
+    matching words. Once completed, it will display the results.
     """
     parser = argparse.ArgumentParser(description='Generates a gameboard and prints any words found within it.')
     parser.add_argument("-l", "--length", type=int, required=True, help='length of gameboard')
