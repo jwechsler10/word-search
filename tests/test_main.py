@@ -78,13 +78,13 @@ def testFindWordsAcrossNegative():
     actualWords = app.findWordsAcross(testGameBoard, 3, 3, expectedWords)
     assert expectedWords == actualWords
 
-def testFindWordsBackwards():
+def testFindWordsBackwardsNegative():
     testGameBoard = [['t', 'q', 'c'], ['p', 'k', 'l'], ['n', 'w', 'x']]
     expectedWords = []
     actualWords = app.findWordsBackwards(testGameBoard, 3, 3, expectedWords)
     assert expectedWords == actualWords
 
-def testFindDiagonal():
+def testFindDiagonalNegative():
     testGameBoard = [['t', 'n', 'q'], ['z', 'd', 'n'], ['v', 'f', 'p']]
     expectedWords = []
     actualWords = app.findWordsDiagonal(testGameBoard, 3, 3, expectedWords)
