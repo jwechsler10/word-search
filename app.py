@@ -146,8 +146,8 @@ def main():
     """
     parser = argparse.ArgumentParser(description='Generates a gameboard and prints any words found within it.')
     parser.add_argument("-l", "--length", type=int, required=True, help='length of gameboard')
-    parser.add_argument("-w", "--width", type=int, required=True, help='width of game_board')
-    parser.add_argument("-sb", "--show-board", action='store_true', required=False, default=False, help='print the game_board')
+    parser.add_argument("-w", "--width", type=int, required=True, help='width of gameboard')
+    parser.add_argument("-sb", "--show-board", action='store_true', required=False, default=False, help='print the gameboard')
     parser.add_argument("-f", "--file", required=False, default='words.txt', help='path to file of valid words to search for')
     args = parser.parse_args()
 
