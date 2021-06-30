@@ -22,23 +22,23 @@ def get_valid_words(file_path='words.txt'):
         sys.exit('File not found, please check the file path and try again.')
 
 def generate_board(length, width):
-    """Generate a game_board based on a user provided length and width.
+    """Generates a gameboard based on a user provided length and width.
 
     Keyword arguments:
     length -- the length of the board
     width -- the width of the board
 
-    Returns a 2D array with random lowercase letters to represent the game_board.
+    Returns a 2D array with random lowercase letters to represent the gameboard.
     """
     return [[random.choice(string.ascii_lowercase) for i in range(length)] for j in range(width)]
 
 def find_words_down(board, length, width, valid_words):
-    """Finds all matching words going down the game_board.
+    """Finds all matching words going down the gameboard.
 
     Keyword arguments:
     board -- the game_board to look for words in
-    length -- the length of the game_board
-    width -- the width of the game_board
+    length -- the length of the gameboard
+    width -- the width of the gameboard
     valid_words -- a list of valid words to compare against
     """
     accepted_words = []
@@ -52,12 +52,12 @@ def find_words_down(board, length, width, valid_words):
 
 
 def find_words_up(board, length, width, valid_words):
-    """Finds all matching words going up the game_board.
+    """Finds all matching words going up the gameboard.
 
     Keyword arguments:
-    board -- the game_board to look for words in
-    length -- the length of the game_board
-    width -- the width of the game_board
+    board -- the gameboard to look for words in
+    length -- the length of the gameboard
+    width -- the width of the gameboard
     valid_words -- a list of valid words to compare against
     """
     accepted_words = []
@@ -70,12 +70,12 @@ def find_words_up(board, length, width, valid_words):
     return accepted_words
 
 def find_words_across(board, length, width, valid_words):
-    """Finds all matching words going right across the game_board.
+    """Finds all matching words going right across the gameboard.
 
     Keyword arguments:
-    board -- the game_board to look for words in
-    length -- the length of the game_board
-    width -- the width of the game_board
+    board -- the gameboard to look for words in
+    length -- the length of the gameboard
+    width -- the width of the gameboard
     valid_words -- a list of valid words to compare against
     """
     accepted_words = []
@@ -88,12 +88,12 @@ def find_words_across(board, length, width, valid_words):
     return accepted_words
 
 def find_words_backwards(board, length, width, valid_words):
-    """Finds all matching words going left across the game_board.
+    """Finds all matching words going left across the gameboard.
 
     Keyword arguments:
     board -- the game_board to look for words in
-    length -- the length of the game_board
-    width -- the width of the game_board
+    length -- the length of the gameboard
+    width -- the width of the gameboard
     valid_words -- a list of valid words to compare against
     """
     accepted_words = []
@@ -106,12 +106,12 @@ def find_words_backwards(board, length, width, valid_words):
     return accepted_words
 
 def find_words_diagonal(board, length, width, valid_words):
-    """Finds all matching words diagionally on the game_board.
+    """Finds all matching words diagionally on the gameboard.
 
     Keyword arguments:
-    board -- the game_board to look for words in
-    length -- the length of the game_board
-    width -- the width of the game_board
+    board -- the gameboard to look for words in
+    length -- the length of the gameboard
+    width -- the width of the gameboard
     valid_words -- a list of valid words to compare against
     """
     accepted_words = []
@@ -131,7 +131,7 @@ def find_words_diagonal(board, length, width, valid_words):
     return accepted_words
 
 def display_board(board):
-    """Prints the game_board in an easy to read format.
+    """Prints the gameboard in an easy to read format.
 
     Keyword arguments:
     board -- the board to display
